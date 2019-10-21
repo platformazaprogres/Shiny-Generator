@@ -43,24 +43,6 @@ random2 <- function(exercises_in_round, number_exercise, hardness, type1) {
   
   ifelse(sum.sum <= 250, 30, ifelse(sum.sum <= 390, 45, 60)) -> exercises_in_round$rest_round[number_exercise]
   
-  print(exercises_in_round)
+  return(exercises_in_round)
 }
 
-
-#!!!!!!!!!!!!!!funkcija za trening planove
-generate.training <- function(data, number_days, type1, hardness) {
-  library(dplyr)
-  data%>%
-    filter(type == c("type1"))%>%
-    arrange(desc(rounds > 2))-> schedule
-  
-  sample(schedule$name, number_days, replace = T) -> schedule
-  
-  schedule <- as.data.frame(schedule)
-  
-  ifelse(hardness == "Beginner", schedule[seq(from = 4, to = number_days, by =  4), ] <- "Rest", 
-         ifelse(hardness == "Intermediate", schedule[seq(from = 4, to = number_days, by =  6), ] <- "Rest",
-                schedule[seq(from = 7, to = number_days, by =  7), ] <- "Rest"))
-  
-  return(schedule)
-}
