@@ -1,0 +1,12 @@
+library(shiny)
+#source("konfiguracija.R")
+
+ui <- fluidPage(
+  button_UI_last("first")
+)
+
+server <- function(input, output, session){
+  callModule(button_last, "first")
+}
+
+shinyApp(ui, server)
